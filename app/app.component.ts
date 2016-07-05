@@ -1,24 +1,23 @@
 import { Component } from '@angular/core';
-import { HTTP_PROVIDERS, Http } from '@angular/http';
-import 'rxjs/add/operator/map'
+import { User } from './model';
+import { UserServcice } from './service';
 
 
 @Component({
   selector: 'my-app',
-  providers: [HTTP_PROVIDERS],
+  providers: [UserService],
   template: `
     <ul>
-        <li *ngFor="let u of users">
+        <li *ngFor="#u of users">
             {{u.id}} - {{u.name}}
 </li> </ul>
 `
 })
 export class AppComponent {
-  users: Array<any>;
+  public users: Array<User>;
 
-  constructor(private _http: Http) {
-    _http.get('./users.json')
-      .map(res => res.json())
+  constructor(uerService: UserService) {
+    userService.getUSers()
       .subscribe(users => this.users = users);
   }
 }
