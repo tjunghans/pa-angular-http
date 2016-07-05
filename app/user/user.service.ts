@@ -14,4 +14,10 @@ export class UserService {
       .get('./users.json')
       .map(res => res.json());
   }
+
+  public addUser(u: User) {
+    return this.http
+      .post('./addUser', JSON.stringify(u))
+      .map(res => res.json());
+  }
 }
