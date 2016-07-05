@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from './model';
-import { UserServcice } from './service';
+import { UserService } from './service';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { UserServcice } from './service';
   providers: [UserService],
   template: `
     <ul>
-        <li *ngFor="#u of users">
+        <li *ngFor="let u of users">
             {{u.id}} - {{u.name}}
 </li> </ul>
 `
@@ -16,8 +16,8 @@ import { UserServcice } from './service';
 export class AppComponent {
   public users: Array<User>;
 
-  constructor(uerService: UserService) {
-    userService.getUSers()
+  constructor(userService: UserService) {
+    userService.getUsers()
       .subscribe(users => this.users = users);
   }
 }
